@@ -14,20 +14,90 @@ const Login = () => {
     email: '',
     password: '',
     name: '',
+    cpf: '',
     confirmPassword: ''
   });
 
+  const formatCPF = (value: string) => {
+    // Remove todos os caracteres não numéricos
+    const numericValue = value.replace(/\D/g, '');
+    
+    // Aplica a máscara XXX.XXX.XXX-XX
+    if (numericValue.length <= 11) {
+      return numericValue
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    }
+    return value;
+  };
+
+  const validateCPF = (cpf: string) => {
+    // Remove caracteres não numéricos
+    const cleanCPF = cpf.replace(/\D/g, '');
+    
+    if (cleanCPF.length !== 11) return false;
+    
+    // Verifica se todos os dígitos são iguais
+    if (/^(\d)\1{10}$/.test(cleanCPF)) return false;
+    
+    // Validação do primeiro dígito verificador
+    let sum = 0;
+    for (let i = 0; i < 9; i++) {
+      sum += parseInt(cleanCPF.charAt(i)) * (10 - i);
+    }
+    let firstDigit = 11 - (sum % 11);
+    if (firstDigit === 10 || firstDigit === 11) firstDigit = 0;
+    if (firstDigit !== parseInt(cleanCPF.charAt(9))) return false;
+    
+    // Validação do segundo dígito verificador
+    sum = 0;
+    for (let i = 0; i < 10; i++) {
+      sum += parseInt(cleanCPF.charAt(i)) * (11 - i);
+    }
+    let secondDigit = 11 - (sum % 11);
+    if (secondDigit === 10 || secondDigit === 11) secondDigit = 0;
+    if (secondDigit !== parseInt(cleanCPF.charAt(10))) return false;
+    
+    return true;
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    
+    if (name === 'cpf') {
+      const formattedCPF = formatCPF(value);
+      setFormData({
+        ...formData,
+        [name]: formattedCPF
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Aqui seria implementada a lógica de autenticação
+    
+    if (!isLogin) {
+      // Validações para cadastro
+      if (!validateCPF(formData.cpf)) {
+        alert('Por favor, insira um CPF válido.');
+        return;
+      }
+      
+      if (formData.password !== formData.confirmPassword) {
+        alert('As senhas não coincidem.');
+        return;
+      }
+    }
+    
     console.log('Form submitted:', formData);
+    console.log('CPF válido:', validateCPF(formData.cpf));
+    
     // Por enquanto, redireciona para a página de pagamento
     navigate('/payment');
   };
@@ -66,6 +136,11 @@ const Login = () => {
                   : 'Comece sua jornada de cuidado emocional conosco'
                 }
               </p>
+              {!isLogin && (
+                <p className="text-sm text-blue-600 mt-2">
+                  O CPF é necessário para evitar o uso múltiplo do período de teste
+                </p>
+              )}
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -82,6 +157,26 @@ const Login = () => {
                     className="h-12"
                     placeholder="Digite seu nome completo"
                   />
+                </div>
+              )}
+
+              {!isLogin && (
+                <div className="space-y-2">
+                  <Label htmlFor="cpf">CPF</Label>
+                  <Input
+                    id="cpf"
+                    name="cpf"
+                    type="text"
+                    required
+                    value={formData.cpf}
+                    onChange={handleInputChange}
+                    className="h-12"
+                    placeholder="000.000.000-00"
+                    maxLength={14}
+                  />
+                  <p className="text-xs text-gray-500">
+                    Necessário para controle do período de teste gratuito
+                  </p>
                 </div>
               )}
 
