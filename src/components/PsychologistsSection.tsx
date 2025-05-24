@@ -1,7 +1,6 @@
 
 import React from 'react';
-import { Star, Award, Clock, CheckCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import PsychologistCard from './PsychologistCard';
 
 const PsychologistsSection = () => {
   const psychologists = [
@@ -13,7 +12,20 @@ const PsychologistsSection = () => {
       reviews: 156,
       image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&h=300&fit=crop&crop=faces",
       available: true,
-      languages: ["Português", "Inglês"]
+      languages: ["Português", "Inglês"],
+      location: "São Paulo, SP",
+      bio: "Especialista em terapia cognitivo-comportamental com foco em transtornos de ansiedade e depressão. Dedica-se ao atendimento humanizado e personalizado, utilizando técnicas baseadas em evidências científicas.",
+      education: [
+        "Psicologia - Universidade de São Paulo (2016)",
+        "Mestrado em Psicologia Clínica - USP (2018)",
+        "Especialização em TCC - Instituto Beck (2019)"
+      ],
+      certifications: [
+        "Certificação em Terapia Cognitivo-Comportamental",
+        "Formação em Mindfulness para Ansiedade",
+        "Curso de Primeiros Socorros Psicológicos"
+      ],
+      approach: "Utilizo a abordagem cognitivo-comportamental combinada com técnicas de mindfulness, focando na identificação e modificação de padrões de pensamento disfuncionais."
     },
     {
       name: "Dr. Carlos Mendes",
@@ -23,7 +35,20 @@ const PsychologistsSection = () => {
       reviews: 203,
       image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&h=300&fit=crop&crop=faces",
       available: true,
-      languages: ["Português", "Espanhol"]
+      languages: ["Português", "Espanhol"],
+      location: "Rio de Janeiro, RJ",
+      bio: "Psicólogo clínico com vasta experiência em TCC, especializado no tratamento de transtornos de humor, fobias e transtornos alimentares. Atua com uma abordagem acolhedora e baseada em evidências.",
+      education: [
+        "Psicologia - Universidade Federal do Rio de Janeiro (2012)",
+        "Doutorado em Psicologia Clínica - UFRJ (2017)",
+        "Pós-doutorado em Neuropsicologia - PUC-Rio (2019)"
+      ],
+      certifications: [
+        "Certificação Internacional em TCC",
+        "Formação em Terapia Familiar Sistêmica",
+        "Especialização em Transtornos Alimentares"
+      ],
+      approach: "Combino técnicas de TCC com abordagens sistêmicas, priorizando a construção de uma aliança terapêutica sólida e o desenvolvimento de estratégias práticas de enfrentamento."
     },
     {
       name: "Dra. Maria Santos",
@@ -33,7 +58,20 @@ const PsychologistsSection = () => {
       reviews: 189,
       image: "https://images.unsplash.com/photo-1594824883271-d32c57b15dce?w=300&h=300&fit=crop&crop=faces",
       available: false,
-      languages: ["Português"]
+      languages: ["Português"],
+      location: "Belo Horizonte, MG",
+      bio: "Especialista em terapia de casal e familiar, com formação em psicanálise e abordagem sistêmica. Dedica-se ao fortalecimento de vínculos e resolução de conflitos familiares.",
+      education: [
+        "Psicologia - Pontifícia Universidade Católica de Minas Gerais (2014)",
+        "Especialização em Terapia Familiar - PUC-MG (2016)",
+        "Formação em Psicanálise - Círculo Psicanalítico de MG (2020)"
+      ],
+      certifications: [
+        "Certificação em Terapia de Casal",
+        "Formação em Constelação Familiar",
+        "Especialização em Mediação de Conflitos"
+      ],
+      approach: "Trabalho com uma abordagem integrativa que combina técnicas sistêmicas e psicanalíticas, focando na compreensão das dinâmicas familiares e na promoção de comunicação saudável."
     }
   ];
 
@@ -52,68 +90,7 @@ const PsychologistsSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {psychologists.map((psychologist, index) => (
-            <div key={index} className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <div className="relative mb-6">
-                <img 
-                  src={psychologist.image} 
-                  alt={psychologist.name}
-                  className="w-20 h-20 rounded-full mx-auto object-cover border-4 border-blue-100"
-                />
-                {psychologist.available && (
-                  <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-green-500 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
-                      <div className="w-2 h-2 bg-green-300 rounded-full animate-pulse"></div>
-                      Online
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="text-center mb-4">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{psychologist.name}</h3>
-                <p className="text-blue-600 font-semibold mb-1">{psychologist.specialty}</p>
-                <p className="text-gray-500 text-sm">{psychologist.experience} de experiência</p>
-              </div>
-
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star 
-                      key={i} 
-                      className={`w-4 h-4 ${i < Math.floor(psychologist.rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} 
-                    />
-                  ))}
-                </div>
-                <span className="text-sm text-gray-600">
-                  {psychologist.rating} ({psychologist.reviews} avaliações)
-                </span>
-              </div>
-
-              <div className="space-y-2 mb-6">
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>CRP verificado</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Clock className="w-4 h-4 text-blue-500" />
-                  <span>Responde em até 5 minutos</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Award className="w-4 h-4 text-purple-500" />
-                  <span>{psychologist.languages.join(", ")}</span>
-                </div>
-              </div>
-
-              <Button 
-                className={`w-full ${psychologist.available 
-                  ? 'bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white' 
-                  : 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                }`}
-                disabled={!psychologist.available}
-              >
-                {psychologist.available ? 'Conversar Agora' : 'Indisponível'}
-              </Button>
-            </div>
+            <PsychologistCard key={index} psychologist={psychologist} />
           ))}
         </div>
 

@@ -13,6 +13,7 @@ const Payment = () => {
       id: 'basic',
       name: 'Plano Básico',
       price: 'R$ 29,90',
+      priceUSD: '5.99',
       period: '/mês',
       features: [
         'Triagem de IA ilimitada',
@@ -26,6 +27,7 @@ const Payment = () => {
       id: 'premium',
       name: 'Plano Premium',
       price: 'R$ 59,90',
+      priceUSD: '11.99',
       period: '/mês',
       features: [
         'Triagem de IA ilimitada',
@@ -41,6 +43,7 @@ const Payment = () => {
       id: 'family',
       name: 'Plano Família',
       price: 'R$ 99,90',
+      priceUSD: '19.99',
       period: '/mês',
       features: [
         'Até 4 membros da família',
@@ -54,9 +57,41 @@ const Payment = () => {
   ];
 
   const handlePayPalPayment = () => {
-    // Aqui seria implementada a integração real com PayPal
+    const selectedPlanData = plans.find(p => p.id === selectedPlan);
+    
+    // Conta PayPal fictícia para receber os pagamentos
+    const paypalBusinessEmail = 'mindhelper.business@gmail.com';
+    
+    // Parâmetros para o PayPal
+    const paypalParams = new URLSearchParams({
+      cmd: '_xclick-subscriptions',
+      business: paypalBusinessEmail,
+      item_name: `Mindhelper - ${selectedPlanData?.name}`,
+      item_number: selectedPlan,
+      currency_code: 'USD',
+      a3: selectedPlanData?.priceUSD || '11.99', // Valor da assinatura
+      p3: '1', // Período (1 mês)
+      t3: 'M', // Tipo de período (M = mensal)
+      src: '1', // Assinatura recorrente
+      sra: '1', // Tentar novamente se falhar
+      no_note: '1',
+      return: `${window.location.origin}/`,
+      cancel_return: `${window.location.origin}/payment`,
+      notify_url: `${window.location.origin}/payment-notification`
+    });
+
     console.log('Processando pagamento via PayPal para o plano:', selectedPlan);
-    alert('Redirecionando para PayPal...');
+    console.log('Redirecionando para PayPal com os seguintes dados:', {
+      plano: selectedPlanData?.name,
+      valor: selectedPlanData?.priceUSD,
+      email_business: paypalBusinessEmail
+    });
+
+    // Redirecionar para o PayPal (sandbox para teste)
+    const paypalUrl = `https://www.sandbox.paypal.com/cgi-bin/webscr?${paypalParams.toString()}`;
+    
+    // Em produção, usar: https://www.paypal.com/cgi-bin/webscr
+    window.location.href = paypalUrl;
   };
 
   return (
@@ -116,6 +151,7 @@ const Payment = () => {
                     <span className="text-4xl font-bold text-blue-600">{plan.price}</span>
                     <span className="text-gray-600 ml-1">{plan.period}</span>
                   </div>
+                  <p className="text-sm text-gray-500 mt-1">USD ${plan.priceUSD}/mês</p>
                 </div>
 
                 <ul className="space-y-4">
@@ -149,13 +185,16 @@ const Payment = () => {
                   <h4 className="font-semibold text-gray-900">
                     {plans.find(p => p.id === selectedPlan)?.name}
                   </h4>
-                  <p className="text-gray-600">Cobrança mensal</p>
+                  <p className="text-gray-600">Assinatura mensal recorrente</p>
                 </div>
                 <div className="text-right">
                   <p className="text-2xl font-bold text-blue-600">
                     {plans.find(p => p.id === selectedPlan)?.price}
                   </p>
                   <p className="text-gray-600">por mês</p>
+                  <p className="text-sm text-gray-500">
+                    USD ${plans.find(p => p.id === selectedPlan)?.priceUSD}
+                  </p>
                 </div>
               </div>
             </div>
@@ -168,6 +207,7 @@ const Payment = () => {
                 <div className="flex-1">
                   <h4 className="font-semibold text-gray-900">PayPal</h4>
                   <p className="text-gray-600">Pagamento seguro via PayPal</p>
+                  <p className="text-xs text-gray-500">mindhelper.business@gmail.com</p>
                 </div>
               </div>
 
@@ -175,7 +215,7 @@ const Payment = () => {
                 onClick={handlePayPalPayment}
                 className="w-full h-14 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold text-lg"
               >
-                Pagar com PayPal
+                Pagar com PayPal - USD ${plans.find(p => p.id === selectedPlan)?.priceUSD}/mês
               </Button>
             </div>
 
