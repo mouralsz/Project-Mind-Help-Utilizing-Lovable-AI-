@@ -2,8 +2,11 @@
 import React from 'react';
 import { ArrowRight, Shield, Clock, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="inicio" className="bg-gradient-to-br from-blue-50 via-white to-teal-50 py-20">
       <div className="container mx-auto px-4">
@@ -29,6 +32,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
+                onClick={() => navigate('/login')}
                 className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 text-lg font-semibold group"
               >
                 Começar Triagem Gratuita
@@ -38,6 +42,7 @@ const HeroSection = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
+                onClick={() => navigate('/login')}
                 className="border-2 border-blue-200 text-blue-700 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
               >
                 Falar com Psicólogo

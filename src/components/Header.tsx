@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { Heart, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
   onMenuToggle: () => void;
@@ -9,6 +9,8 @@ interface HeaderProps {
 }
 
 const Header = ({ onMenuToggle, isMenuOpen }: HeaderProps) => {
+  const navigate = useNavigate();
+
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4">
@@ -36,7 +38,10 @@ const Header = ({ onMenuToggle, isMenuOpen }: HeaderProps) => {
             <a href="#recursos" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Recursos
             </a>
-            <Button className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-6">
+            <Button 
+              onClick={() => navigate('/login')}
+              className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-6"
+            >
               Começar Agora
             </Button>
           </nav>
@@ -65,7 +70,10 @@ const Header = ({ onMenuToggle, isMenuOpen }: HeaderProps) => {
             <a href="#recursos" className="block text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Recursos
             </a>
-            <Button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white">
+            <Button 
+              onClick={() => navigate('/login')}
+              className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white"
+            >
               Começar Agora
             </Button>
           </nav>
