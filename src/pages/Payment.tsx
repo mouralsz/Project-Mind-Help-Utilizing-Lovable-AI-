@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ArrowLeft, Check, Shield, Clock, Heart } from 'lucide-react';
+import { ArrowLeft, Check, Shield, Clock, Heart, Gift } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 
@@ -62,14 +62,17 @@ const Payment = () => {
     // Conta PayPal fictícia para receber os pagamentos
     const paypalBusinessEmail = 'mindhelper.business@gmail.com';
     
-    // Parâmetros para o PayPal
+    // Parâmetros para o PayPal com período de teste
     const paypalParams = new URLSearchParams({
       cmd: '_xclick-subscriptions',
       business: paypalBusinessEmail,
-      item_name: `Mindhelper - ${selectedPlanData?.name}`,
+      item_name: `Mindhelper - ${selectedPlanData?.name} (7 dias grátis)`,
       item_number: selectedPlan,
       currency_code: 'USD',
-      a3: selectedPlanData?.priceUSD || '11.99', // Valor da assinatura
+      a1: '0.00', // Valor do período de teste (grátis)
+      p1: '7', // Duração do período de teste (7 dias)
+      t1: 'D', // Tipo de período de teste (D = dias)
+      a3: selectedPlanData?.priceUSD || '11.99', // Valor da assinatura após o teste
       p3: '1', // Período (1 mês)
       t3: 'M', // Tipo de período (M = mensal)
       src: '1', // Assinatura recorrente
@@ -84,6 +87,7 @@ const Payment = () => {
     console.log('Redirecionando para PayPal com os seguintes dados:', {
       plano: selectedPlanData?.name,
       valor: selectedPlanData?.priceUSD,
+      periodo_teste: '7 dias grátis',
       email_business: paypalBusinessEmail
     });
 
@@ -118,11 +122,18 @@ const Payment = () => {
 
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              <Gift className="w-4 h-4" />
+              7 dias grátis para experimentar
+            </div>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Escolha seu plano de cuidado emocional
             </h2>
             <p className="text-xl text-gray-600">
               Invista na sua saúde mental com o apoio de profissionais qualificados
+            </p>
+            <p className="text-lg text-green-600 font-semibold mt-2">
+              Comece com 7 dias gratuitos - cancele quando quiser
             </p>
           </div>
 
@@ -146,12 +157,20 @@ const Payment = () => {
                 )}
 
                 <div className="text-center mb-8">
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
+                    <p className="text-green-700 font-semibold text-sm">
+                      7 dias grátis
+                    </p>
+                    <p className="text-green-600 text-xs">
+                      Depois {plan.price}{plan.period}
+                    </p>
+                  </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
                   <div className="flex items-baseline justify-center">
                     <span className="text-4xl font-bold text-blue-600">{plan.price}</span>
                     <span className="text-gray-600 ml-1">{plan.period}</span>
                   </div>
-                  <p className="text-sm text-gray-500 mt-1">USD ${plan.priceUSD}/mês</p>
+                  <p className="text-sm text-gray-500 mt-1">USD ${plan.priceUSD}/mês após o teste</p>
                 </div>
 
                 <ul className="space-y-4">
@@ -179,20 +198,32 @@ const Payment = () => {
               Finalizar pagamento
             </h3>
 
+            <div className="bg-green-50 border border-green-200 rounded-2xl p-6 mb-6">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <Gift className="w-5 h-5 text-green-600" />
+                <h4 className="font-bold text-green-800 text-lg">Período de Teste Gratuito</h4>
+              </div>
+              <p className="text-green-700 text-center text-sm">
+                Experimente por 7 dias sem custo. Você pode cancelar a qualquer momento durante o período de teste.
+              </p>
+            </div>
+
             <div className="bg-blue-50 rounded-2xl p-6 mb-8">
               <div className="flex justify-between items-center">
                 <div>
                   <h4 className="font-semibold text-gray-900">
                     {plans.find(p => p.id === selectedPlan)?.name}
                   </h4>
-                  <p className="text-gray-600">Assinatura mensal recorrente</p>
+                  <p className="text-gray-600">7 dias grátis, depois assinatura mensal</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-2xl font-bold text-blue-600">
-                    {plans.find(p => p.id === selectedPlan)?.price}
+                  <p className="text-lg font-bold text-green-600 mb-1">
+                    Grátis por 7 dias
                   </p>
-                  <p className="text-gray-600">por mês</p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-gray-600 text-sm">
+                    Depois {plans.find(p => p.id === selectedPlan)?.price} por mês
+                  </p>
+                  <p className="text-xs text-gray-500">
                     USD ${plans.find(p => p.id === selectedPlan)?.priceUSD}
                   </p>
                 </div>
@@ -215,7 +246,7 @@ const Payment = () => {
                 onClick={handlePayPalPayment}
                 className="w-full h-14 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold text-lg"
               >
-                Pagar com PayPal - USD ${plans.find(p => p.id === selectedPlan)?.priceUSD}/mês
+                Começar 7 dias grátis com PayPal
               </Button>
             </div>
 
@@ -227,6 +258,10 @@ const Payment = () => {
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Clock className="w-4 h-4 text-blue-600" />
                 <span>Cancele a qualquer momento</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <Gift className="w-4 h-4 text-green-600" />
+                <span>7 dias grátis</span>
               </div>
             </div>
           </div>
