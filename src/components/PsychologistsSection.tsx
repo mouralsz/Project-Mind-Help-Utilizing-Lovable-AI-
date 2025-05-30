@@ -57,7 +57,7 @@ const PsychologistsSection = () => {
       rating: 4.9,
       reviews: 189,
       image: "/lovable-uploads/cf656348-cfac-499e-a8dc-23633115ada3.png",
-      available: false,
+      available: true,
       languages: ["Português"],
       location: "Belo Horizonte, MG",
       bio: "Especialista em terapia de casal e familiar, com formação em psicanálise e abordagem sistêmica. Dedica-se ao fortalecimento de vínculos e resolução de conflitos familiares.",
