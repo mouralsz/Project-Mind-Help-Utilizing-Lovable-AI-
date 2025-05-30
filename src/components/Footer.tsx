@@ -1,8 +1,11 @@
 
 import React from 'react';
 import { Heart, Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className="bg-gray-900 text-white py-16">
       <div className="container mx-auto px-4">
@@ -39,11 +42,46 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-6">Serviços</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Triagem Emocional</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Chat com Psicólogos</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Videochamadas</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Recursos Educativos</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Acompanhamento</a></li>
+              <li>
+                <button 
+                  onClick={() => navigate('/triagem')}
+                  className="text-gray-300 hover:text-white transition-colors text-left"
+                >
+                  Triagem Emocional
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => navigate('/chat')}
+                  className="text-gray-300 hover:text-white transition-colors text-left"
+                >
+                  Chat com Psicólogos
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => navigate('/videochamadas')}
+                  className="text-gray-300 hover:text-white transition-colors text-left"
+                >
+                  Videochamadas
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => navigate('/recursos')}
+                  className="text-gray-300 hover:text-white transition-colors text-left"
+                >
+                  Recursos Educativos
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => navigate('/acompanhamento')}
+                  className="text-gray-300 hover:text-white transition-colors text-left"
+                >
+                  Acompanhamento
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -78,9 +116,24 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row gap-4 text-sm text-gray-400">
             <span>© 2024 Mindhelper. Todos os direitos reservados.</span>
             <div className="flex gap-4">
-              <a href="#" className="hover:text-white transition-colors">Política de Privacidade</a>
-              <a href="#" className="hover:text-white transition-colors">Termos de Uso</a>
-              <a href="#" className="hover:text-white transition-colors">Código de Ética</a>
+              <button 
+                onClick={() => navigate('/politica-privacidade')}
+                className="hover:text-white transition-colors"
+              >
+                Política de Privacidade
+              </button>
+              <button 
+                onClick={() => navigate('/termos-uso')}
+                className="hover:text-white transition-colors"
+              >
+                Termos de Uso
+              </button>
+              <button 
+                onClick={() => navigate('/codigo-etica')}
+                className="hover:text-white transition-colors"
+              >
+                Código de Ética
+              </button>
             </div>
           </div>
           

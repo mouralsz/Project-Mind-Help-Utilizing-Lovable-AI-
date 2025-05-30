@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Heart, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -29,6 +30,12 @@ const Header = ({ onMenuToggle, isMenuOpen }: HeaderProps) => {
             <a href="#inicio" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Início
             </a>
+            <button 
+              onClick={() => navigate('/servicos')}
+              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            >
+              Serviços
+            </button>
             <a href="#como-funciona" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Como Funciona
             </a>
@@ -61,6 +68,12 @@ const Header = ({ onMenuToggle, isMenuOpen }: HeaderProps) => {
             <a href="#inicio" className="block text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Início
             </a>
+            <button 
+              onClick={() => navigate('/servicos')}
+              className="block text-gray-700 hover:text-blue-600 transition-colors font-medium text-left"
+            >
+              Serviços
+            </button>
             <a href="#como-funciona" className="block text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Como Funciona
             </a>
