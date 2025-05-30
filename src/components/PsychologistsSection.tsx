@@ -10,7 +10,7 @@ const PsychologistsSection = () => {
       experience: "8 anos",
       rating: 4.9,
       reviews: 156,
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&h=300&fit=crop&crop=faces",
+      image: "/lovable-uploads/5bced0e8-d85a-4b74-b192-a26521e01a2e.png",
       available: true,
       languages: ["Português", "Inglês"],
       location: "São Paulo, SP",
@@ -33,7 +33,7 @@ const PsychologistsSection = () => {
       experience: "12 anos",
       rating: 4.8,
       reviews: 203,
-      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&h=300&fit=crop&crop=faces",
+      image: "/lovable-uploads/8ec36a05-5a09-4ce0-a0ee-0c9a8620f7b8.png",
       available: true,
       languages: ["Português", "Espanhol"],
       location: "Rio de Janeiro, RJ",
@@ -56,7 +56,7 @@ const PsychologistsSection = () => {
       experience: "10 anos",
       rating: 4.9,
       reviews: 189,
-      image: "https://images.unsplash.com/photo-1594824883271-d32c57b15dce?w=300&h=300&fit=crop&crop=faces",
+      image: "/lovable-uploads/cf656348-cfac-499e-a8dc-23633115ada3.png",
       available: false,
       languages: ["Português"],
       location: "Belo Horizonte, MG",
@@ -79,7 +79,7 @@ const PsychologistsSection = () => {
       experience: "6 anos",
       rating: 4.7,
       reviews: 98,
-      image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=300&h=300&fit=crop&crop=faces",
+      image: "/lovable-uploads/ef5cf4e8-6191-49d8-bcc2-2884c8783074.png",
       available: true,
       languages: ["Português", "Inglês"],
       location: "Brasília, DF",
@@ -95,6 +95,29 @@ const PsychologistsSection = () => {
         "Curso de Intervenções em Crise"
       ],
       approach: "Utilizo uma abordagem integrada de TCC com técnicas de mindfulness e aceitação, focando no desenvolvimento de habilidades práticas para o manejo de sintomas e melhoria da qualidade de vida."
+    },
+    {
+      name: "Dr. Gabriel",
+      specialty: "Psicoterapia Integrativa",
+      experience: "9 anos",
+      rating: 4.8,
+      reviews: 142,
+      image: "/lovable-uploads/b6f55cdb-b190-4426-b434-bb2a47bec044.png",
+      available: true,
+      languages: ["Português", "Inglês", "Francês"],
+      location: "Porto Alegre, RS",
+      bio: "Psicólogo clínico com formação em psicoterapia integrativa, especializado em trauma, luto e crescimento pós-traumático. Combina diferentes abordagens terapêuticas para um atendimento personalizado.",
+      education: [
+        "Psicologia - Universidade Federal do Rio Grande do Sul (2015)",
+        "Mestrado em Psicologia Clínica - UFRGS (2017)",
+        "Especialização em Trauma e EMDR - Instituto Brasileiro EMDR (2019)"
+      ],
+      certifications: [
+        "Certificação em EMDR (Eye Movement Desensitization and Reprocessing)",
+        "Formação em Terapia Narrativa",
+        "Especialização em Psicologia do Luto"
+      ],
+      approach: "Utilizo uma abordagem integrativa que combina EMDR, terapia narrativa e técnicas humanísticas, adaptando o tratamento às necessidades específicas de cada pessoa."
     }
   ];
 
