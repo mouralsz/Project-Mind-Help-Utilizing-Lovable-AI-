@@ -5,7 +5,7 @@ import PsychologistCard from './PsychologistCard';
 const PsychologistsSection = () => {
   const psychologists = [
     {
-      name: "Dra. Ana Silva",
+      name: "Dr. Eduardo Moura",
       specialty: "Ansiedade e Transtornos do Humor",
       experience: "8 anos",
       rating: 4.9,
@@ -28,7 +28,7 @@ const PsychologistsSection = () => {
       approach: "Utilizo a abordagem cognitivo-comportamental combinada com técnicas de mindfulness, focando na identificação e modificação de padrões de pensamento disfuncionais."
     },
     {
-      name: "Dr. Carlos Mendes",
+      name: "Dr. Denner Cauan",
       specialty: "Terapia Cognitivo Comportamental",
       experience: "12 anos",
       rating: 4.8,
@@ -51,7 +51,7 @@ const PsychologistsSection = () => {
       approach: "Combino técnicas de TCC com abordagens sistêmicas, priorizando a construção de uma aliança terapêutica sólida e o desenvolvimento de estratégias práticas de enfrentamento."
     },
     {
-      name: "Dra. Maria Santos",
+      name: "Dr. Lucas Santos",
       specialty: "Relacionamentos e Família",
       experience: "10 anos",
       rating: 4.9,
@@ -72,6 +72,29 @@ const PsychologistsSection = () => {
         "Especialização em Mediação de Conflitos"
       ],
       approach: "Trabalho com uma abordagem integrativa que combina técnicas sistêmicas e psicanalíticas, focando na compreensão das dinâmicas familiares e na promoção de comunicação saudável."
+    },
+    {
+      name: "Dr. Pedro Araújo",
+      specialty: "Terapia Cognitivo Comportamental",
+      experience: "6 anos",
+      rating: 4.7,
+      reviews: 98,
+      image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=300&h=300&fit=crop&crop=faces",
+      available: true,
+      languages: ["Português", "Inglês"],
+      location: "Brasília, DF",
+      bio: "Psicólogo clínico especializado em TCC, com foco no tratamento de transtornos de ansiedade, depressão e desenvolvimento pessoal. Utiliza abordagem empática e técnicas inovadoras.",
+      education: [
+        "Psicologia - Universidade de Brasília (2018)",
+        "Especialização em TCC - Instituto de Terapia Cognitiva (2020)",
+        "Curso de Aperfeiçoamento em Mindfulness (2021)"
+      ],
+      certifications: [
+        "Certificação em Terapia Cognitivo-Comportamental",
+        "Formação em Terapia Baseada em Aceitação e Compromisso",
+        "Curso de Intervenções em Crise"
+      ],
+      approach: "Utilizo uma abordagem integrada de TCC com técnicas de mindfulness e aceitação, focando no desenvolvimento de habilidades práticas para o manejo de sintomas e melhoria da qualidade de vida."
     }
   ];
 
