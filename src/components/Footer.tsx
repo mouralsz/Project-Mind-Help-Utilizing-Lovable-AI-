@@ -19,8 +19,7 @@ const Footer = () => {
               <h3 className="text-2xl font-bold">Mindhelper</h3>
             </div>
             <p className="text-gray-300 leading-relaxed mb-6 max-w-md">
-              Conectando pessoas ao cuidado emocional que precisam, quando precisam. 
-              Sua saúde mental é nossa prioridade.
+              O Mindhelper é uma solução moderna, inclusiva e urgente para um problema que não pode esperar.
             </p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
@@ -99,7 +98,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-blue-400" />
-                <span className="text-gray-300">São Paulo, SP</span>
+                <span className="text-gray-300">Brasília, DF</span>
               </li>
             </ul>
 

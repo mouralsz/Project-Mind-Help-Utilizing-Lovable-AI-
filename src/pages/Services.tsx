@@ -3,6 +3,7 @@ import React from 'react';
 import { Brain, MessageCircle, Video, BookOpen, Activity } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import Header from '@/components/Header';
 
 const Services = () => {
   const navigate = useNavigate();
@@ -47,7 +48,8 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-teal-50">
-      <div className="container mx-auto px-4 py-16">
+      <Header onMenuToggle={() => {}} isMenuOpen={false} />
+      <div className="container mx-auto px-4 py-16 pt-32">
         <div className="text-center mb-16">
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Nossos <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">Serviços</span>

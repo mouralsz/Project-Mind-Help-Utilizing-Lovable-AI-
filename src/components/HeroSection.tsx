@@ -81,8 +81,8 @@ const HeroSection = () => {
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full"></div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Dra. Ana Silva</h4>
-                    <p className="text-sm text-gray-600">Psicóloga Clínica • Online</p>
+                    <h4 className="font-semibold text-gray-900">Dr. Eduardo Moura</h4>
+                    <p className="text-sm text-gray-600">Psicólogo Clínico • Online</p>
                   </div>
                 </div>
                 <p className="text-gray-700 italic">
@@ -101,8 +101,10 @@ const HeroSection = () => {
               </div>
             </div>
             
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-yellow-300 rounded-full opacity-20 animate-pulse"></div>
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-purple-300 rounded-full opacity-20 animate-pulse delay-1000"></div>
+            {/* Novo efeito: ondas flutuantes */}
+            <div className="absolute -top-8 -right-8 w-20 h-20 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full opacity-60 animate-bounce"></div>
+            <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-teal-200 to-blue-200 rounded-full opacity-40 animate-bounce delay-500"></div>
+            <div className="absolute top-1/2 -right-6 w-12 h-12 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full opacity-50 animate-bounce delay-1000"></div>
           </div>
         </div>
       </div>
