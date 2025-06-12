@@ -1,108 +1,108 @@
 
 import React from 'react';
-import { ArrowRight, Shield, Clock, Users } from 'lucide-react';
+import { Heart, MessageCircle, Shield, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
   const navigate = useNavigate();
 
+  const features = [
+    {
+      icon: MessageCircle,
+      title: "Chat 24/7",
+      description: "Suporte emocional disponível a qualquer momento"
+    },
+    {
+      icon: Shield,
+      title: "100% Seguro",
+      description: "Suas conversas são completamente confidenciais"
+    },
+    {
+      icon: Clock,
+      title: "Sem Espera",
+      description: "Conecte-se instantaneamente com psicólogos qualificados"
+    }
+  ];
+
   return (
-    <section id="inicio" className="bg-gradient-to-br from-blue-50 via-white to-teal-50 py-20">
+    <section id="inicio" className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-teal-50 flex items-center pt-20">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <div className="space-y-6">
-              <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                <span className="text-gray-900">Cuidando da sua</span>
-                <br />
-                <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                  Saúde Mental
-                </span>
-                <br />
-                <span className="text-gray-700 text-3xl lg:text-4xl">com tecnologia e empatia</span>
-              </h1>
-              
-              <p className="text-xl text-gray-600 leading-relaxed">
-                Sua ponte imediata para o cuidado emocional. Triagem inteligente, 
-                atendimento humanizado e conexão instantânea com psicólogos qualificados.
-              </p>
-            </div>
+          <div className="text-center lg:text-left">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              Cuidado emocional quando você
+              <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent block">
+                mais precisa
+              </span>
+            </h1>
+            
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl">
+              Conecte-se com psicólogos licenciados através de nossa plataforma segura. 
+              Receba suporte emocional personalizado via chat, áudio ou vídeo.
+            </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <Button 
-                size="lg" 
-                onClick={() => navigate('/login')}
-                className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 text-lg font-semibold group"
+                onClick={() => navigate('/triagem')}
+                size="lg"
+                className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
               >
+                <Heart className="w-5 h-5 mr-2" />
                 Começar Triagem Gratuita
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               
               <Button 
-                variant="outline" 
-                size="lg" 
                 onClick={() => navigate('/login')}
-                className="border-2 border-blue-200 text-blue-700 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
+                variant="outline" 
+                size="lg"
+                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
               >
-                Falar com Psicólogo
+                Entrar na Plataforma
               </Button>
             </div>
 
-            <div className="flex items-center gap-8 pt-8">
-              <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-green-600" />
-                <span className="text-sm text-gray-600 font-medium">100% Seguro e Confidencial</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-5 h-5 text-blue-600" />
-                <span className="text-sm text-gray-600 font-medium">Atendimento 24/7</span>
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {features.map((feature, index) => (
+                <div key={index} className="text-center lg:text-left">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-100 to-teal-100 rounded-full flex items-center justify-center mx-auto lg:mx-0 mb-3">
+                    <feature.icon className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                  <p className="text-sm text-gray-600">{feature.description}</p>
+                </div>
+              ))}
             </div>
           </div>
 
           <div className="relative">
-            <div className="bg-white rounded-3xl shadow-2xl p-8 border border-blue-100">
-              <div className="space-y-6">
-                <div className="flex items-center gap-3 pb-4 border-b border-gray-100">
-                  <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                  <span className="ml-4 text-sm text-gray-500 font-medium">Mindhelper Chat</span>
-                </div>
-                
-                <div className="space-y-4">
-                  <div className="bg-blue-100 rounded-2xl rounded-bl-md p-4 max-w-xs">
-                    <p className="text-blue-800">Olá! Sou o assistente do Mindhelper. Como você está se sentindo hoje?</p>
-                  </div>
-                  
-                  <div className="bg-gray-100 rounded-2xl rounded-br-md p-4 max-w-xs ml-auto">
-                    <p className="text-gray-700">Tenho me sentido muito ansioso ultimamente...</p>
-                  </div>
-                  
-                  <div className="bg-blue-100 rounded-2xl rounded-bl-md p-4 max-w-xs">
-                    <p className="text-blue-800">Entendo. Vou te ajudar com algumas perguntas para encontrar o melhor suporte.</p>
+            <div className="bg-gradient-to-br from-blue-500 to-teal-500 rounded-2xl p-8 shadow-2xl">
+              <div className="bg-white rounded-xl p-6 mb-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full"></div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Dra. Ana Silva</h4>
+                    <p className="text-sm text-gray-600">Psicóloga Clínica • Online</p>
                   </div>
                 </div>
-                
-                <div className="flex items-center gap-2 text-sm text-gray-500">
-                  <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
-                  </div>
-                  <span>Digitando...</span>
+                <p className="text-gray-700 italic">
+                  "Olá! Como posso ajudar você hoje? Estou aqui para oferecer um espaço seguro e acolhedor."
+                </p>
+              </div>
+              
+              <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                <div className="flex items-center gap-2 text-white mb-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium">15 psicólogos online agora</span>
                 </div>
+                <p className="text-white/80 text-sm">
+                  Tempo médio de resposta: menos de 5 minutos
+                </p>
               </div>
             </div>
             
-            {/* Floating elements */}
-            <div className="absolute -top-4 -right-4 bg-teal-500 text-white p-3 rounded-full shadow-lg">
-              <Users className="w-6 h-6" />
-            </div>
-            <div className="absolute -bottom-4 -left-4 bg-blue-500 text-white p-3 rounded-full shadow-lg">
-              <Shield className="w-6 h-6" />
-            </div>
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-yellow-300 rounded-full opacity-20 animate-pulse"></div>
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-purple-300 rounded-full opacity-20 animate-pulse delay-1000"></div>
           </div>
         </div>
       </div>
