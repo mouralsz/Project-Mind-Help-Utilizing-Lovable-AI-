@@ -2,7 +2,7 @@
 import React from 'react';
 import { Heart, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface HeaderProps {
   onMenuToggle: () => void;
@@ -11,12 +11,30 @@ interface HeaderProps {
 
 const Header = ({ onMenuToggle, isMenuOpen }: HeaderProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
 
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
             <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full flex items-center justify-center">
               <Heart className="w-6 h-6 text-white" fill="white" />
             </div>
@@ -27,24 +45,36 @@ const Header = ({ onMenuToggle, isMenuOpen }: HeaderProps) => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#inicio" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <button 
+              onClick={() => scrollToSection('inicio')}
+              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            >
               Início
-            </a>
+            </button>
             <button 
               onClick={() => navigate('/servicos')}
               className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
             >
               Serviços
             </button>
-            <a href="#como-funciona" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <button 
+              onClick={() => scrollToSection('como-funciona')}
+              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            >
               Como Funciona
-            </a>
-            <a href="#psicologos" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            </button>
+            <button 
+              onClick={() => scrollToSection('psicologos')}
+              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            >
               Psicólogos
-            </a>
-            <a href="#recursos" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            </button>
+            <button 
+              onClick={() => scrollToSection('recursos')}
+              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            >
               Recursos
-            </a>
+            </button>
             <Button 
               onClick={() => navigate('/login')}
               className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-6"
@@ -65,26 +95,56 @@ const Header = ({ onMenuToggle, isMenuOpen }: HeaderProps) => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav className="md:hidden mt-4 py-4 border-t border-blue-100 space-y-4">
-            <a href="#inicio" className="block text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              Início
-            </a>
             <button 
-              onClick={() => navigate('/servicos')}
+              onClick={() => {
+                scrollToSection('inicio');
+                onMenuToggle();
+              }}
+              className="block text-gray-700 hover:text-blue-600 transition-colors font-medium text-left"
+            >
+              Início
+            </button>
+            <button 
+              onClick={() => {
+                navigate('/servicos');
+                onMenuToggle();
+              }}
               className="block text-gray-700 hover:text-blue-600 transition-colors font-medium text-left"
             >
               Serviços
             </button>
-            <a href="#como-funciona" className="block text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <button 
+              onClick={() => {
+                scrollToSection('como-funciona');
+                onMenuToggle();
+              }}
+              className="block text-gray-700 hover:text-blue-600 transition-colors font-medium text-left"
+            >
               Como Funciona
-            </a>
-            <a href="#psicologos" className="block text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            </button>
+            <button 
+              onClick={() => {
+                scrollToSection('psicologos');
+                onMenuToggle();
+              }}
+              className="block text-gray-700 hover:text-blue-600 transition-colors font-medium text-left"
+            >
               Psicólogos
-            </a>
-            <a href="#recursos" className="block text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            </button>
+            <button 
+              onClick={() => {
+                scrollToSection('recursos');
+                onMenuToggle();
+              }}
+              className="block text-gray-700 hover:text-blue-600 transition-colors font-medium text-left"
+            >
               Recursos
-            </a>
+            </button>
             <Button 
-              onClick={() => navigate('/login')}
+              onClick={() => {
+                navigate('/login');
+                onMenuToggle();
+              }}
               className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white"
             >
               Começar Agora

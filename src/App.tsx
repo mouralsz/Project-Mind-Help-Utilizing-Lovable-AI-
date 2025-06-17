@@ -12,7 +12,12 @@ import TermsOfUse from "./pages/TermsOfUse";
 import CodeOfEthics from "./pages/CodeOfEthics";
 import Services from "./pages/Services";
 import EmotionalScreening from "./pages/EmotionalScreening";
+import Chat from "./pages/Chat";
+import VideoCall from "./pages/VideoCall";
+import EducationalResources from "./pages/EducationalResources";
+import Monitoring from "./pages/Monitoring";
 import NotFound from "./pages/NotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +36,26 @@ const App = () => (
           <Route path="/codigo-etica" element={<CodeOfEthics />} />
           <Route path="/servicos" element={<Services />} />
           <Route path="/triagem" element={<EmotionalScreening />} />
+          <Route path="/chat" element={
+            <ProtectedRoute>
+              <Chat />
+            </ProtectedRoute>
+          } />
+          <Route path="/videochamadas" element={
+            <ProtectedRoute>
+              <VideoCall />
+            </ProtectedRoute>
+          } />
+          <Route path="/recursos" element={
+            <ProtectedRoute>
+              <EducationalResources />
+            </ProtectedRoute>
+          } />
+          <Route path="/acompanhamento" element={
+            <ProtectedRoute>
+              <Monitoring />
+            </ProtectedRoute>
+          } />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

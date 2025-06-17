@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ArrowLeft, Eye, EyeOff, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -19,10 +18,8 @@ const Login = () => {
   });
 
   const formatCPF = (value: string) => {
-    // Remove todos os caracteres não numéricos
     const numericValue = value.replace(/\D/g, '');
     
-    // Aplica a máscara XXX.XXX.XXX-XX
     if (numericValue.length <= 11) {
       return numericValue
         .replace(/(\d{3})(\d)/, '$1.$2')
@@ -33,15 +30,12 @@ const Login = () => {
   };
 
   const validateCPF = (cpf: string) => {
-    // Remove caracteres não numéricos
     const cleanCPF = cpf.replace(/\D/g, '');
     
     if (cleanCPF.length !== 11) return false;
     
-    // Verifica se todos os dígitos são iguais
     if (/^(\d)\1{10}$/.test(cleanCPF)) return false;
     
-    // Validação do primeiro dígito verificador
     let sum = 0;
     for (let i = 0; i < 9; i++) {
       sum += parseInt(cleanCPF.charAt(i)) * (10 - i);
@@ -50,7 +44,6 @@ const Login = () => {
     if (firstDigit === 10 || firstDigit === 11) firstDigit = 0;
     if (firstDigit !== parseInt(cleanCPF.charAt(9))) return false;
     
-    // Validação do segundo dígito verificador
     sum = 0;
     for (let i = 0; i < 10; i++) {
       sum += parseInt(cleanCPF.charAt(i)) * (11 - i);
@@ -83,7 +76,6 @@ const Login = () => {
     e.preventDefault();
     
     if (!isLogin) {
-      // Validações para cadastro
       if (!validateCPF(formData.cpf)) {
         alert('Por favor, insira um CPF válido.');
         return;
@@ -95,10 +87,11 @@ const Login = () => {
       }
     }
     
-    console.log('Form submitted:', formData);
-    console.log('CPF válido:', validateCPF(formData.cpf));
+    // Simular login bem-sucedido
+    localStorage.setItem('userLoggedIn', 'true');
+    console.log('Login realizado com sucesso');
     
-    // Por enquanto, redireciona para a página de pagamento
+    // Redirecionar para a página de pagamento
     navigate('/payment');
   };
 
